@@ -1,9 +1,14 @@
 # cuHelmholtz
-## intro
-a CUDA based Library for Discrete Sine/Cosine Transform and Solution of Helmholtz Equation
+## Introduction
+cudasymmfft: A CUDA based Library for three-dimensional Discrete Fourier, Sine and Cosine Transform (DFT, DST, DCT).
+cudahelmholtz: A GPU solver for Helmholtz Equation by using cudasymmfft library.
 
-## install 
-this project use CUDA and GCC. Go check them out if you don't have them locally installed.
+## Requirement
+We use cuTranspose in cudahelmholtz. You should install it first.
+
+## cudasymmfft
+### Installation
+To compiler this library you need to use CUDA and GCC. Go check them out if you don't have them locally installed. We have tested on CUDA 6.0 and GCC 4.8.4.
 
 ```bash
 cd likefftwall 
@@ -11,7 +16,7 @@ make
 make lib
 ```
 
-## usage
+### Usage
 After installation, you can find the library files libcudasymmfft.a in this folder
 
 Users must include the header ```funcinterface.h``` and link the lib ```libcudasymmfft.a```
@@ -29,3 +34,18 @@ void do_transform(double *d_data,               //input data
 ```
 
 Note that the NX, NY and NZ must be equal for in-place calculations.
+
+## cudahelmholtz
+### Introduction
+cudahelmholtz solves Helmholtz equation laplace u + lambda * u = f on GPU. It can solve three-dimensional Helmholtz equations with different boundary conditions. The boundary condition in each direction can be periodic, Dirichlet or Neumann, and cudahelmholtz allows different boundary conditions in the three (x, y and z) directions.
+
+### Usage
+```bash
+cd cudahelmholtz 
+make testgpu
+./testgpu 128 1 2 0 
+```
+In the above, 128 means the number of cells in each direction. If you want to use different cells in different directions, you should use "make testgpurectangle" instead of "make testgpu". The three numbers after 128 are boundary condtions in x, y and z directions respectively. 0 means periodic, 1 means left and right are both Dirichlet boundaries, 2 means left is Dirichlet boundary and right is Neumann boundary, 3 means left and right are both Neumann boundaries, 4 means left is Neumann boundary and right is Dirichlet boundary. 
+
+### Caution
+If you want to change the testing function, you just need to modify file "ufunc.h". But pay attention to the periodic boundary condition. When you want to use periodic boundary condition, you must make sure that the inline functions in file "ufunc.h" return identical values at the two ends in the periodic direction. We have provided three testing examples in this file.
