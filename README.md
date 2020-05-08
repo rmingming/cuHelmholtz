@@ -1,10 +1,10 @@
 # cuHelmholtz
 ## Introduction
-* ```cudasymmfft```
+```cudasymmfft```
 
 A CUDA based Library for three-dimensional Discrete Fourier, Sine and Cosine Transform (DFT, DST, DCT).
 
-* ```cudahelmholtz```
+```cudahelmholtz```
 
 A GPU solver for Helmholtz Equation by using cudasymmfft library.
 
