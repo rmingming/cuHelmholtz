@@ -1,8 +1,8 @@
 # cuHelmholtz
 ## Introduction
-```cudasymmfft```
+* ```cudasymmfft```
 A CUDA based Library for three-dimensional Discrete Fourier, Sine and Cosine Transform (DFT, DST, DCT).
-```cudahelmholtz```
+* ```cudahelmholtz```
 A GPU solver for Helmholtz Equation by using cudasymmfft library.
 
 
@@ -50,8 +50,7 @@ make testgpu
 ./testgpu 128 1 2 0 
 ```
 In the above line ```./testgpu 128 1 2 0```, 128 means the number of cells in each direction. If you want to use different cells in different directions, you should use ```make testgpurectangle``` instead of ```make testgpu```. 
-The three numbers after 128 are boundary condtions in x, y and z directions respectively. The number can be 0, 1, 2, 3, and 4. Their meanings are:
-
+The three numbers after 128 are boundary condtions in x, y and z directions respectively. Each number can be 0, 1, 2, 3, and 4 which has the following meaning:
 * 0 means periodic
 * 1 means left and right are both Dirichlet boundaries
 * 2 means left is Dirichlet boundary and right is Neumann boundary
