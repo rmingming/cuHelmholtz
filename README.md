@@ -1,7 +1,9 @@
 # cuHelmholtz
 ## Introduction
-cudasymmfft: A CUDA based Library for three-dimensional Discrete Fourier, Sine and Cosine Transform (DFT, DST, DCT).
-cudahelmholtz: A GPU solver for Helmholtz Equation by using cudasymmfft library.
+```cudasymmfft```
+A CUDA based Library for three-dimensional Discrete Fourier, Sine and Cosine Transform (DFT, DST, DCT).
+```cudahelmholtz```
+A GPU solver for Helmholtz Equation by using cudasymmfft library.
 
 
 ## cudasymmfft
@@ -15,7 +17,7 @@ make lib
 ```
 
 ### Usage
-After installation, you can find the library files libcudasymmfft.a in this folder
+After installation, you can find the library files ```libcudasymmfft.a``` in this folder
 
 You must include the header ```funcinterface.h``` and link against the lib ```libcudasymmfft.a```
 
@@ -35,11 +37,11 @@ Note that the NX, NY and NZ must be equal for in-place calculations.
 
 ## cudahelmholtz
 ### Introduction
-cudahelmholtz solves Helmholtz equation laplace u + lambda * u = f on GPU. It can solve three-dimensional Helmholtz equations with different boundary conditions. The boundary condition in each direction can be periodic, Dirichlet or Neumann, and cudahelmholtz allows different boundary conditions in the three (x, y and z) directions.
+```cudahelmholtz``` solves Helmholtz equation ```laplace u + lambda * u = f``` on GPU. It can solve three-dimensional Helmholtz equations with different boundary conditions. The boundary condition in each direction can be periodic, Dirichlet or Neumann, and ```cudahelmholtz``` allows different boundary conditions in the three (x, y and z) directions.
 
 
 ### Requirement
-We use cuTranspose in cudahelmholtz. You should install it first.
+We use ```cuTranspose``` in ```cudahelmholtz```. You should install it first.
 
 ### Usage
 ```bash
@@ -47,7 +49,8 @@ cd cudahelmholtz
 make testgpu
 ./testgpu 128 1 2 0 
 ```
-In the above, 128 means the number of cells in each direction. If you want to use different cells in different directions, you should use "make testgpurectangle" instead of "make testgpu". The three numbers after 128 are boundary condtions in x, y and z directions respectively. 0 means periodic, 1 means left and right are both Dirichlet boundaries, 2 means left is Dirichlet boundary and right is Neumann boundary, 3 means left and right are both Neumann boundaries, 4 means left is Neumann boundary and right is Dirichlet boundary. 
+In the above, 128 means the number of cells in each direction. If you want to use different cells in different directions, you should use ```make testgpurectangle``` instead of ```make testgpu```. 
+The three numbers after 128 are boundary condtions in x, y and z directions respectively. 0 means periodic, 1 means left and right are both Dirichlet boundaries, 2 means left is Dirichlet boundary and right is Neumann boundary, 3 means left and right are both Neumann boundaries, 4 means left is Neumann boundary and right is Dirichlet boundary. 
 
 ### Caution
-If you want to change the testing function, you just need to modify file "ufunc.h". But pay attention to the periodic boundary condition. When you want to use periodic boundary condition, you must make sure that the inline functions in file "ufunc.h" return identical values at the two ends in the periodic direction. We have provided three testing examples in this file.
+If you want to change the testing function, you just need to modify file ```ufunc.h```. But pay attention to the periodic boundary condition. When you want to use periodic boundary condition, you must make sure that the inline functions in file ```ufunc.h``` return identical values at the two ends in the periodic direction. We have provided three testing examples in this file.
