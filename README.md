@@ -49,8 +49,14 @@ cd cudahelmholtz
 make testgpu
 ./testgpu 128 1 2 0 
 ```
-In the above, 128 means the number of cells in each direction. If you want to use different cells in different directions, you should use ```make testgpurectangle``` instead of ```make testgpu```. 
-The three numbers after 128 are boundary condtions in x, y and z directions respectively. 0 means periodic, 1 means left and right are both Dirichlet boundaries, 2 means left is Dirichlet boundary and right is Neumann boundary, 3 means left and right are both Neumann boundaries, 4 means left is Neumann boundary and right is Dirichlet boundary. 
+In the above line ```./testgpu 128 1 2 0```, 128 means the number of cells in each direction. If you want to use different cells in different directions, you should use ```make testgpurectangle``` instead of ```make testgpu```. 
+The three numbers after 128 are boundary condtions in x, y and z directions respectively. The number can be 0, 1, 2, 3, and 4. Their meanings are:
+
+* 0 means periodic
+* 1 means left and right are both Dirichlet boundaries
+* 2 means left is Dirichlet boundary and right is Neumann boundary
+* 3 means left and right are both Neumann boundaries
+* 4 means left is Neumann boundary and right is Dirichlet boundary. 
 
 ### Caution
 If you want to change the testing function, you just need to modify file ```ufunc.h```. But pay attention to the periodic boundary condition. When you want to use periodic boundary condition, you must make sure that the inline functions in file ```ufunc.h``` return identical values at the two ends in the periodic direction. We have provided three testing examples in this file.
